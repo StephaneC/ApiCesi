@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.min.js"></script>
+  </head>
+  <body>
+
+    <div ng-app="DemoApp" ng-controller="DemoCtrl">
+            <button ng-click="doRequest()">Do request</button>
+            <pre ng-bind="data.res | json"></pre>
+        </div>
+    <script>
+            angular.module('DemoApp', ['ngResource'])
+            .controller('DemoCtrl', function($scope, $http) {
+                $scope.data = {
+                    res: {}
+                };
+
+                    $http.defaults.headers.common['Authorization'] = 'Bearer c97c17dd-a7ad-4522-8806-25c4c918cd93';
+                    $http.defaults.headers.common['Token'] = 'c97c17dd-a7ad-4522-8806-25c4c918cd93';
+
+                $scope.doRequest = function () {
+                            $http({method: 'GET', url: 'http://eqwall.stephanecastrec.eu.cloudbees.net/api/v1/oauth/users/'}).
+                        success(function(data, status, headers, config) {
+                                $scope.data.res = config;
+                        }).
+                        error(function(data, status, headers, config) {
+
+                                $scope.data.res = config;
+                        });
+                };
+            })
+    </script>
+  </body>
+</html>

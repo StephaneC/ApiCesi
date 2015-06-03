@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "basePath": "http://api.eqwall.com/api/v1/",
+  "resources": [
+    {
+      "resource": "commons",
+      "json": "commons.json"
+    },    
+    {
+      "resource": "Tchat",
+      "json": "tchat.json"
+    },    
+    {
+      "resource": "User",
+      "json": "user.json"
+    }
+  ]
+}

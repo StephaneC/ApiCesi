@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "resource": "doc",
+  "endpoints": [
+    {
+      "endpoint": "messages",
+      "httpMethod": "GET",
+      "description": "Get messages in conferences.",
+      "shortDecription": "Tchats ",
+      "url": "",
+      "output": "List of messages"
+    },
+    {
+      "endpoint": "messages",
+      "httpMethod": "POST",
+      "description": "Add a message.",
+      "shortDecription": "moderated messages",
+      "url": "",
+      "parameters": [
+        {
+          "parameter": "message",
+          "value": "(string)",
+          "description": "Message to add."
+        }
+      ] ,
+      "output": "list of messages"
+    }
+  ]
+}

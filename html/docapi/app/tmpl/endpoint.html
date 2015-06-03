@@ -1,0 +1,42 @@
+<script id="endpointTmpl" type="text/x-jquery-tmpl"> 
+<li class="${httpMethod} endpoint" id="resource_${resource}">
+	<div class="heading">
+		<h3>
+			<span class="http_method"><a href="#!/">${httpMethod}</a></span>
+			<span class="path"><a href="#!/">/${resource}/${endpoint}</a></span>
+		</h3>
+		
+		{{if shortDecription}}
+		<ul class="options">
+			<li><a href="#!/">${shortDecription}</a></li>
+		</ul>
+		{{/if}}
+		
+	</div>
+	<div class="content">
+		{{if description}}
+		<h4>Description</h4>
+		<p>${description}</p>
+		{{/if}}
+		
+		{{if url}}
+		<h4>URL</h4>
+		<pre>${url}</pre>
+		{{/if}}
+		
+		{{if parameters}}
+		<h4>Parameters</h4>
+		<table>
+			{{each(i, parameter) parameters}}
+			<tr>
+				<td class="parameter">${parameter}</td>
+				<td class="value">${value}</td>
+				<td class="description}">${description}</td>
+			</tr>
+			{{/each}}
+		</table>
+		{{/if}}
+		
+	</div>
+</li>
+</script>

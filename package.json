@@ -1,0 +1,13 @@
+{
+  "name": "ApiCesi",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Simple node api",
+  "author": "Stéphane Castrec <stephane.castrec@gmail.com>",
+  "dependencies": {
+    "body-parser": "^1.12.4",
+    "crypto": "0.0.3",
+    "express": "",
+    "redis": ""
+  }
+}

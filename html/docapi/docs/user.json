@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "resource": "doc",
+  "endpoints": [
+    {
+      "endpoint": "signup",
+      "httpMethod": "GET",
+      "description": "Register a new user.",
+      "shortDecription": "Tchats ",
+      "url": "",
+      "parameters": [
+          {
+          "parameter": "username",
+          "value": "(string)",
+          "description": "User login."
+        },
+        {
+          "parameter": "pwd",
+          "value": "(string)",
+          "description": "Password for this user."
+        }
+      ]
+    },
+    {
+      "endpoint": "signin",
+      "httpMethod": "POST",
+      "description": "Login to the app.",
+      "shortDecription": "login to the app",
+      "url": "",
+      "parameters": [
+        {
+          "parameter": "username",
+          "value": "(string)",
+          "description": "Your login."
+        },
+        {
+          "parameter": "pwd",
+          "value": "(string)",
+          "description": "Your password."
+        }
+      ] ,
+      "output": "Return a token"
+    },
+      {
+      "endpoint": "users",
+      "httpMethod": "GET",
+      "description": "Get users created.",
+      "shortDecription": "Users ",
+      "url": "",
+      "output": "List of users"
+    },
+  ]
+}

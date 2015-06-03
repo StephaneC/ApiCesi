@@ -1,0 +1,373 @@
+/*
+App: API Docs
+App URI: https://github.com/plougy/apidocs-ui
+App Version: 1.0
+Author: Aymeric Gallissot
+Author URI: http://aymericgallissot.fr
+
+*/
+
+
+/* BASE
+-------------------------------------------------- */
+body{
+	font:normal 100% "Droid Sans","Lucida Grande",Lucida,Verdana,sans-serif;
+	color:#333333;
+}
+
+a{
+	color:#547F00;
+	text-decoration:none;
+}
+
+h2{
+	color:#89BF04;
+	font-size:1.3em;
+	padding:10px 0 10px 0;
+}
+
+h3{
+	font-size:1.1em;
+	line-height:1.1em;
+}
+
+h4{
+	font-size:1.1em;
+	line-height:1.1em;
+}
+
+p{
+	line-height:1.4em;
+	padding:0 0 10px 0;
+	color:#333333;
+}
+
+pre{
+	margin-bottom:5px;
+	background:#FCF6DB;
+	border:1px solid #E5E0C6;
+	font-family:"Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
+	padding:10px;
+	font-size:0.9em;
+	max-height:400px;
+	overflow-y:auto;
+}
+
+table{
+	width:100%;
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+table tr td{
+	padding:6px;
+	font-size:0.9em;
+	border-bottom: 1px solid #CCC;
+	vertical-align: top;
+	line-height: 1.3em;
+}
+
+/* HEADER
+-------------------------------------------------- */
+header{
+	margin:0px 0px 20px;
+	background:#ccc;
+	padding:14px;
+	overflow:hidden;
+}
+
+header h1{
+	float:left;
+}
+
+header h1 a{
+	font-size: 1.5em;
+	font-weight: bold;
+	color:#fff;
+}
+
+
+/* CONTENT
+-------------------------------------------------- */
+#content{}
+
+
+/* CONTENT : Helper
+-------------------------------------------------- */
+#helper{
+	margin:10px 15px;
+    font-style:italic;
+    color: #999999;
+}
+
+
+
+/* CONTENT : Resources
+-------------------------------------------------- */
+#resources{
+	padding:0 15px;
+	font-family:"Droid Sans", sans-serif;
+	font-size:0.9em;
+}
+
+#resources a:hover{
+	text-decoration:underline;
+}
+
+#resources li.resource{
+	border-bottom:1px solid #ddd;
+}
+
+#resources li:last-child{
+	border-bottom:0;
+}
+
+#resources li.resource div.heading{
+	border:1px solid transparent;
+	float:none;
+	clear:both;
+	overflow:hidden;
+}
+
+#resources li.resource div.heading h2{
+	color:#999;
+	padding-left:0px;
+	float: left;
+	font-family: "Droid Sans", sans-serif;
+	font-weight: bold;
+}
+
+#resources li.resource div.heading h2 a{
+	color:#999;
+}
+
+#resources li.resource div.heading > ul.options{
+	float:right;
+	padding: 10px 0 10px 0;
+}
+
+#resources li.resource div.heading > ul.options li{
+	float:left;
+	margin:0;
+	padding:2px 10px;
+	border-right:1px solid #ddd;
+	color:#666;
+	font-size:0.9em;
+}
+
+#resources li.resource div.heading > ul.options li:last-child{
+	border-right:0;	
+}
+
+#resources li.resource div.heading > ul.options li a{
+	color:#999;
+}
+
+#resources li.resource:hover div.heading a{
+	color:#000;
+}
+
+#resources li.resource.active div.heading h2 a,
+#resources li.resource:hover div.heading h2 a{
+	color:#000;
+}
+
+#resources li.resource.active div.heading > ul.options li a,
+#resources li.resource:hover div.heading > ul.options li a{
+	color:#555;
+}
+
+
+#resources li.resource ul.endpoints{
+	display:none;
+}
+
+#resources li.resource ul.endpoints li.endpoint{
+	clear:both;
+	margin:0 0 10px 0;
+}
+
+#resources li.resource ul.endpoints li.endpoint div.heading{
+	clear: both;
+	height:28px;
+	border:1px solid #000;
+}
+
+
+
+#resources li.resource ul.endpoints li.endpoint.get div.heading{
+	background-color: #E7F0F7;
+	border-color: #C3D9EC;
+}
+
+#resources li.resource ul.endpoints li.endpoint.post div.heading{
+	background-color: #E7F6EC;
+	border-color: #C3E8D1;
+}
+
+#resources li.resource ul.endpoints li.endpoint.delete div.heading{
+	background-color: #F5E8E8;
+	border-color: #E8C6C7;
+}
+
+#resources li.resource ul.endpoints li.endpoint.put div.heading{
+	background-color: #F9F2E9;
+	border-color: #F0E0CA;
+}
+
+
+ul#resources li.resource ul.endpoints li.endpoint div.heading h3 {
+	float: left;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint div.heading h3 span.http_method a{
+	text-transform: uppercase;
+	text-decoration: none;
+	color: white;
+	display: inline-block;
+	width: 50px;
+	font-size: 0.7em;
+	text-align: center;
+	padding: 7px 0 4px 0;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+
+ul#resources li.resource ul.endpoints li.endpoint.get div.heading h3 span.http_method a{
+	background-color:#0F6AB4;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint.post div.heading h3 span.http_method a{
+	background-color:#10A54A;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint.delete div.heading h3 span.http_method a{
+	background-color:#A41E22;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint.put div.heading h3 span.http_method a{
+	background-color:#C5862B;
+}
+
+
+
+#resources li.resource ul.endpoints li.endpoint div.heading h3 span.path a{
+	padding-left:10px;
+	color:#000;
+}
+
+#resources li.resource ul.endpoints li.endpoint div.heading ul.options{
+	float: right;
+	padding: 5px 0 10px 0;
+}
+
+
+#resources li.resource ul.endpoints li.endpoint.get div.heading ul.options li a{
+	color: #0f6ab4;
+}
+
+#resources li.resource ul.endpoints li.endpoint.post div.heading ul.options li a{
+	color: #10a54a;
+}
+
+#resources li.resource ul.endpoints li.endpoint.put div.heading ul.options li a{
+	color: #c5862b;
+}
+
+#resources li.resource ul.endpoints li.endpoint.delete div.heading ul.options li a{
+	color: #a41e22;
+}
+
+
+#resources li.resource ul.endpoints li.endpoint div.content{
+	display:none;
+	border: 1px solid #000;
+	border-top: none;
+	padding: 10px;
+	margin: 0 0 20px 0;
+	-webkit-border-bottom-right-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-radius-bottomright: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+#resources li.resource ul.endpoints li.endpoint.get div.content{
+	background-color: #ebf3f9;
+	border-color: #c3d9ec;
+}
+
+#resources li.resource ul.endpoints li.endpoint.post div.content{
+	background-color: #EBF7F0;
+	border-color: #C3E8D1;
+}
+
+#resources li.resource ul.endpoints li.endpoint.put div.content{
+	background-color: #faf5ee;
+	border-color: #f0e0ca;
+}
+
+#resources li.resource ul.endpoints li.endpoint.delete div.content{
+	background-color: #f7eded;
+	border-color: #e8c6c7;
+}
+
+
+	
+ul#resources li.resource ul.endpoints li.endpoint div.content h4{
+	padding: 15px 0 5px 0px;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint.get div.content h4{
+	color: #0f6ab4;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint.post div.content h4{
+	color: #10A54A;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint.put div.content h4{
+	color: #c5862b;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint.delete div.content h4{
+	color: #a41e22;
+}
+
+
+ul#resources li.resource ul.endpoints li.endpoint div.content table{
+	
+}
+
+ul#resources li.resource ul.endpoints li.endpoint div.content table tr:last-child td{
+	border-bottom:0;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint div.content table td.parameter{
+	width:120px;
+	font-weight:bold;
+}
+
+ul#resources li.resource ul.endpoints li.endpoint div.content table td.value{
+	width:180px;
+}
+ul#resources li.resource ul.endpoints li.endpoint div.content table td.description{
+
+}
+
+
+
+/* FOOTER
+-------------------------------------------------- */
+footer{
+	margin:0 15px 40px 15px;
+	padding:10px 0;
+	font-size:0.8em;
+	border-top:1px solid #DDD;
+	font-family:"Droid Sans", sans-serif;
+	color:#999;
+	font-style:italic;
+}

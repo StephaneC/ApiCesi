@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Cesi REST API Docs</title>
+	
+	<link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="app/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="app/css/common.css" />
+	
+	<script type="text/javascript" src="app/js/jquery.js"></script>
+	<script type="text/javascript" src="app/js/jquery.tmpl.min.js"></script>
+	<script type="text/javascript" src="app/js/app.js"></script>
+</head>
+<body>
+	
+	<header><h1><a href="#">Cesi REST API Docs</a></h1></header>
+    <p>Attention: Pour les parties authentifiées, mettre un Header "token"</p>
+	
+	<section id="content">
+		<div id="helper">Start...</div>
+		<ul id="resources">
+			
+		</ul>
+	</section>
+	
+	<footer>Cesi API documentation.</footer>
+	
+	<script id="resourceTmpl" type="text/x-jquery-tmpl"> 
+		<li class="resource" id="${resource}">
+			<div class="heading">
+				<h2><a href="#!/${resource}">/${resource}</a></h2>
+				<ul class="options">
+					<li><a href="#!/${resource}" class="show">Show/Hide</a></li>
+					<li><a href="#" class="list">List Operations</a></li>
+					<li><a href="#" class="expand">Expand Operations</a></li>
+				</ul>
+			</div>
+
+			<ul class="endpoints"></ul>
+		</li>
+	</script>
+	
+	<script id="endpointTmpl" type="text/x-jquery-tmpl"> 
+	<li class="${httpMethod} endpoint" id="resource_${resource}">
+		<div class="heading">
+			<h3>
+				<span class="http_method"><a href="#!/">${httpMethod}</a></span>
+				<span class="path"><a href="#!/">/${endpoint}</a></span> <!--${resource}/${endpoint}-->
+			</h3>
+
+			{{if shortDecription}}
+			<ul class="options">
+				<li><a href="#!/">${shortDecription}</a></li>
+			</ul>
+			{{/if}}
+
+		</div>
+		<div class="content">
+			{{if description}}
+			<h4>Description</h4>
+			<p>${description}</p>
+			{{/if}}
+
+			{{if url}}
+			<h4>URL</h4>
+			<pre>${url}</pre>
+			{{/if}}
+
+			{{if parameters}}
+			<h4>Parameters</h4>
+			<table>
+				{{each(i, parameter) parameters}}
+				<tr>
+					<td class="parameter">${parameter}</td>
+					<td class="value">${value}</td>
+					<td class="description}">${description}</td>
+				</tr>
+				{{/each}}
+			</table>
+			{{/if}}
+
+			{{if output}}
+			<h4>Output</h4>
+			<pre>${output}</pre>
+			{{/if}}
+
+		</div>
+	</li>
+	</script>
+</body>
+</html>

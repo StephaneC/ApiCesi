@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "basePath": "",
+  "resources": [
+    {
+      "resource": "commons",
+      "json": "commons.json"
+    },
+    {
+      "resource": "tchat",
+      "json": "tchat.json"
+    },
+  ]
+}

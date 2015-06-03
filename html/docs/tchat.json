@@ -1,0 +1,28 @@
+{
+    "version":"1.0",
+    "resource":"doc",
+    "endpoints":[
+        {
+            "endpoint":"/message",
+            "httpMethod":"POST",
+            "description":"ping request",
+            "shortDecription":"ping",
+            "output":"{}"
+        },
+        {
+            "endpoint":"/message",
+            "httpMethod":"GET",
+            "description":"get all messages",
+            "shortDecription":"get messages",
+            "parameters":[
+                {
+                    "parameter":"name",
+                    "value":"(string)",
+                    "description": "name"
+                }
+            ],
+            "output":'{"messages":[{"message":"message you"ll receive"},{"message":"msg 2"}]'
+        }
+    
+    ]
+}

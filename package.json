@@ -9,5 +9,11 @@
     "crypto": "0.0.3",
     "express": "",
     "redis": ""
+  },
+    "scripts" : {
+    "start" : "node main.js"
+  },
+  "engines" : {
+    "node" : ">=0.6"
   }
 }

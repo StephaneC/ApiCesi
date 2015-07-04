@@ -1,7 +1,6 @@
 var express = require('express');
 var app     = express();
 var redis = require('redis');
-var crypto = require('crypto');
 
 var http = require('http').Server(app);
 
@@ -91,7 +90,7 @@ app.post('/signin', function(req, res){
             } else {
                 crypto.randomBytes(48, function(ex, buf) {
                   var token = buf.toString('hex');
-                    client.set(token, username);
+                    client.set(token, username);                    
                     res.status(200);
                     res.send('{"token":"'+token+'"}');
                 });                
@@ -168,6 +167,6 @@ app.use(function(req, res, next){
     res.send(404, 'Page introuvable !');
 });
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+http.listen(8080, function(){
+  console.log('listening on *:8080');
 });

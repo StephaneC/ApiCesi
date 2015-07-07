@@ -1,6 +1,7 @@
 var express = require('express');
 var app     = express();
 var redis = require('redis');
+var crypto = require('crypto');
 
 var http = require('http').Server(app);
 
@@ -168,5 +169,5 @@ app.use(function(req, res, next){
 });
 
 http.listen(8080, function(){
-  console.log('listening on *:8080');
+  console.log('listening on *:3000');
 });

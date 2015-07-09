@@ -23,7 +23,7 @@
           "description": "Message to add."
         }
       ] ,
-      "output": "list of messages"
+      "output": "200 OK"
     }
   ]
 }

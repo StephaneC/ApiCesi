@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 
 var messages =[];
+var notes =[];
+
 var users =[];
 var port = process.env.REDIS_PORT_6379_TCP_PORT;
 var host = process.env.REDIS_PORT_6379_TCP_ADDR;
@@ -158,6 +160,79 @@ app.get('/messages', function(req, res){
         }
     }); 
 });
+
+
+/** Tchat part **/
+
+/**
+ * add a message
+ */
+app.post('/notes', function(req, res){
+    var token = req.header('token', null);
+    console.log("note posted by token : " + token);
+    console.log('post note '+JSON.stringify(req.body));
+    client.get(token, function(err, name){ 
+        var msg = req.body.note;
+        if(name){
+            var note = {
+                id : name+"_"+new Date().getTime(),
+                username : name,
+                date : new Date().getTime(),
+                note: msg,
+                done: false
+            }
+            notes.push(message); 
+            res.status(200);
+            res.send();
+        } else {
+            res.status(401);
+            res.send('token invalid');
+        }
+    });  
+    
+});
+
+app.post('/notes/:id', function(req, res){
+    var token = req.header('token', null);
+    var id = request.params.id;
+    var done = req.body.done;
+    client.get(token, function(err, name){ 
+        var msg = req.body.note;
+        if(name){
+            if(notes[id]){
+                var n = notes[id];
+                n.done=done;                
+                notes[id] = n;
+                res.status(200);
+                res.send();
+            } else {
+                res.status(400);
+                return;
+            }            
+        } else {
+            res.status(401);
+            res.send('token invalid');
+        }
+    });      
+});
+
+
+
+/**
+ * get all messages
+ */
+app.get('/notes', function(req, res){
+    var token = req.header('token', null);
+    client.get(token, function(err, reply){
+        if(reply){
+            res.status(200);
+            res.send(JSON.stringify(notes)); 
+        } else {
+            res.status(401);
+            res.send('token invalid');
+        }
+    }); 
+});
     
 
 /*
@@ -169,5 +244,5 @@ app.use(function(req, res, next){
 });
 
 http.listen(8080, function(){
-  console.log('listening on *:3000');
+  console.log('listening on *:8080');
 });

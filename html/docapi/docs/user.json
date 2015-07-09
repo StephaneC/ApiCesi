@@ -4,7 +4,7 @@
   "endpoints": [
     {
       "endpoint": "signup",
-      "httpMethod": "GET",
+      "httpMethod": "POST",
       "description": "Register a new user.",
       "shortDecription": "Tchats ",
       "url": "",

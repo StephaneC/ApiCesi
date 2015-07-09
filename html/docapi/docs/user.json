@@ -46,12 +46,13 @@
       ] ,
       "output": "Return a token"
     },
-      {
+    {
       "endpoint": "users",
       "httpMethod": "GET",
       "description": "Get users created.",
       "shortDecription": "Users ",
       "url": "",
       "output": "List of users"
-    }  
+    } 
+  ]
 }

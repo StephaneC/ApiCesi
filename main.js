@@ -69,7 +69,7 @@ app.post('/signup', function(req, res){
                 var u = {
                     username:username,
                     urlPhoto: urlPhoto,
-                    date : date
+                    date : new Date().getTime()
                 }
                 users.push(u);
                 res.status(200);

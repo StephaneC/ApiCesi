@@ -56,6 +56,7 @@ app.get('/hello', function(req, res){
 app.post('/signup', function(req, res){
     var username = req.param('username', null);
     var pwd = req.param('pwd', null);
+    var urlPhoto = req.param('urlPhoto', null);
     console.log('signup '+username);
     if(!username || !pwd){
         res.status(400);
@@ -65,7 +66,12 @@ app.post('/signup', function(req, res){
             // reply is null when the key is missing
             if(reply == null){
                 client.set(username, pwd);//TODO hash
-                users.push(username);
+                var u = {
+                    username:username,
+                    urlPhoto: urlPhoto,
+                    date : date
+                }
+                users.push(u);
                 res.status(200);
                 res.send();
             } else {

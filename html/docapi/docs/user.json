@@ -18,6 +18,11 @@
           "parameter": "pwd",
           "value": "(string)",
           "description": "Password for this user."
+        },
+        {
+          "parameter": "urlPhoto",
+          "value": "(string)",
+          "description": "url to a picture for tihs user."
         }
       ]
     },

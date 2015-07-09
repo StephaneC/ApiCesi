@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "resource": "doc",
+  "endpoints": [
+    {
+      "endpoint": "notes",
+      "httpMethod": "GET",
+      "description": "Get notes.",
+      "shortDecription": "notes ",
+      "url": "",
+      "output": "List of notes"
+    },
+    {
+      "endpoint": "notes",
+      "httpMethod": "POST",
+      "description": "Add a note.",
+      "url": "",
+      "parameters": [
+        {
+          "parameter": "note",
+          "value": "(string)",
+          "description": "Message to add."
+        }
+      ] ,
+      "output": "200 OK"
+    },
+    {
+      "endpoint": "notes/{id}",
+      "httpMethod": "POST",
+      "description": "Add a note. Param id the id of the note.",
+      "url": "",
+      "parameters": [
+        {
+          "parameter": "done",
+          "value": "(boolean)",
+          "description": "Indicate if you did or a note."
+        }
+      ] ,
+      "output": "200 OK"
+    }
+  ]
+}

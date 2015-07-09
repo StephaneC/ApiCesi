@@ -202,7 +202,7 @@ app.post('/notes/:id', function(req, res){
     var token = req.header('token', null);
     var id = req.params.id;
     client.get(token, function(err, name){ 
-                console.log('update note '+JSON.stringify(req.body));
+        console.log('update note '+JSON.stringify(req.body));
         var done = req.body.done;
         if(name){
             if(id in notes){
@@ -232,7 +232,15 @@ app.get('/notes', function(req, res){
     client.get(token, function(err, reply){
         if(reply){
             res.status(200);
-            res.send(JSON.stringify(notes)); 
+            var output = [], item;
+
+            for (var type in notes) {
+                item = {};
+                item.type = type;
+                item.name = input[type];
+                output.push(item);
+            }
+            res.send(JSON.stringify(output)); 
         } else {
             res.status(401);
             res.send('token invalid');

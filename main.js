@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 
 var messages =[];
-var notes =[];
+var notes ={};
 
 var users =[];
 var port = process.env.REDIS_PORT_6379_TCP_PORT;
@@ -187,7 +187,7 @@ app.post('/notes', function(req, res){
                 note: msg,
                 done: false
             }
-            notes.push(message); 
+            notes[note.id] = note; 
             res.status(200);
             res.send();
         } else {
@@ -200,12 +200,12 @@ app.post('/notes', function(req, res){
 
 app.post('/notes/:id', function(req, res){
     var token = req.header('token', null);
-    var id = request.params.id;
-    var done = req.body.done;
+    var id = req.params.id;
     client.get(token, function(err, name){ 
-        var msg = req.body.note;
+                console.log('update note '+JSON.stringify(req.body));
+        var done = req.body.done;
         if(name){
-            if(notes[id]){
+            if(id in notes){
                 var n = notes[id];
                 n.done=done;                
                 notes[id] = n;

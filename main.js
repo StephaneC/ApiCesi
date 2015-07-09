@@ -232,13 +232,10 @@ app.get('/notes', function(req, res){
     client.get(token, function(err, reply){
         if(reply){
             res.status(200);
-            var output = [], item;
+            var output = [];
 
             for (var type in notes) {
-                item = {};
-                item.type = type;
-                item.name = notes[type];
-                output.push(item);
+                output.push(notes[type]);
             }
             res.send(JSON.stringify(output)); 
         } else {

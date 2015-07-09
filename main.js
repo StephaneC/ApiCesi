@@ -237,7 +237,7 @@ app.get('/notes', function(req, res){
             for (var type in notes) {
                 item = {};
                 item.type = type;
-                item.name = input[type];
+                item.name = notes[type];
                 output.push(item);
             }
             res.send(JSON.stringify(output)); 

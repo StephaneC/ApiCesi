@@ -16,14 +16,23 @@ var messages =[];
 var notes ={};
 
 var users =[];
-var port = process.env.REDIS_PORT_6379_TCP_PORT;
-var host = process.env.REDIS_PORT_6379_TCP_ADDR;
+var port = process.env.REDIS_PORT;
+var host = process.env.REDIS_HOST;
+var pwd = process.env.REDIS_PASSWORD;
 var connectRedis = function(){
     console.log("connect");
     try {
         //if env var exist, user it
+        var options = {
+        };
+        if(pwd){
+            console.log("redis with pwd  ");
+            options.auth_pass = pwd;
+        } else {
+            console.log("redis no pwd  ");
+        }        
         if(port && host){
-            client= redis.createClient(port, host);
+          client= redis.createClient(port, host, options);
         } else {
             //else give a try to default
             client = redis.createClient();

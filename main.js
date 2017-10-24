@@ -136,7 +136,7 @@ app.post('/signin', function(req, res){
 
 app.get('/users', function(req, res){
     var token = req.header('token', null);
-    if(checkToken(token){
+    if(checkToken(token)){
       client.get(token, function(err, reply){
           if(reply){
               res.status(200);
@@ -160,7 +160,7 @@ app.post('/messages', function(req, res){
     var token = req.header('token', null);
     console.log("message posted by token : " + token);
     console.log('post message '+JSON.stringify(req.body));
-    if(checkToken(token){
+    if(checkToken(token)){
       client.get(token, function(err, name){ 
           var msg = req.body.message;
           if(name){
@@ -185,7 +185,7 @@ app.post('/messages', function(req, res){
  */
 app.get('/messages', function(req, res){
     var token = req.header('token', null);
-    if(checkToken(token){
+    if(checkToken(token)){
       client.get(token, function(err, reply){
           if(reply){
               res.status(200);
@@ -208,7 +208,7 @@ app.post('/notes', function(req, res){
     var token = req.header('token', null);
     console.log("note posted by token : " + token);
     console.log('post note '+JSON.stringify(req.body));
-    if(checkToken(token){
+    if(checkToken(token)){
       client.get(token, function(err, name){ 
           var msg = req.body.note;
           if(name){
@@ -234,7 +234,7 @@ app.post('/notes', function(req, res){
 app.post('/notes/:id', function(req, res){
     var token = req.header('token', null);
     var id = req.params.id;
-    if(checkToken(token){
+    if(checkToken(token)){
       client.get(token, function(err, name){ 
           console.log('update note '+JSON.stringify(req.body));
           var done = req.body.done;
@@ -264,7 +264,7 @@ app.post('/notes/:id', function(req, res){
  */
 app.get('/notes', function(req, res){
     var token = req.header('token', null);
-    if(checkToken(token){
+    if(checkToken(token)){
       client.get(token, function(err, reply){
           if(reply){
               res.status(200);

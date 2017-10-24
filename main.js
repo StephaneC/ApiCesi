@@ -146,6 +146,9 @@ app.get('/users', function(req, res){
               res.send('token invalid');
           }
       });
+  }else {
+    res.status(401);
+    res.send('token invalid');
   }
 });
 
@@ -177,7 +180,10 @@ app.post('/messages', function(req, res){
               res.send('token invalid');
           }
       }); 
-    }    
+    } else {
+      res.status(401);
+      res.send('token invalid');
+    }   
 });
 
 /**
@@ -196,6 +202,9 @@ app.get('/messages', function(req, res){
               res.send('token invalid');
           }
       });
+    } else {
+      res.status(401);
+      res.send('token invalid');
     }
 });
 
@@ -228,6 +237,9 @@ app.post('/notes', function(req, res){
               res.send('token invalid');
           }
       });
+    } else {
+      res.status(401);
+      res.send('token invalid');
     }
     
 });
@@ -255,7 +267,10 @@ app.post('/notes/:id', function(req, res){
               res.send('token invalid');
           }
       });
-  }
+    }else {
+      res.status(401);
+      res.send('token invalid');
+    }
 });
 
 
@@ -280,7 +295,10 @@ app.get('/notes', function(req, res){
               res.send('token invalid');
           }
       }); 
-  }
+    } else {
+      res.status(401);
+      res.send('token invalid');
+    }
 });
     
 

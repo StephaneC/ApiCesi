@@ -185,6 +185,7 @@ app.post('/messages', function(req, res){
  */
 app.get('/messages', function(req, res){
     var token = req.header('token', null);
+    console.log("GET message by token : " + token);
     if(checkToken(token)){
       client.get(token, function(err, reply){
           if(reply){

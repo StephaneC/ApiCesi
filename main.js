@@ -46,6 +46,12 @@ var connectRedis = function(){
 };
 connectRedis();
 
+var checkToken = function(token){
+  if(!token || token == 'undefined'){
+    return false;
+  }
+  return true;
+}
 
 app.use(express.static('./html/docapi'));
 
@@ -78,9 +84,9 @@ app.post('/signup', function(req, res){
     var pwd = req.param('pwd', null);
     var urlPhoto = req.param('urlPhoto', null);
     console.log('signup '+username);
-    if(!username || !pwd){
+    if(!username || !pwd || username == 'undefined' || pwd == 'undefined'){
         res.status(400);
-        res.send("error");
+        res.send("error, username or pwd undefined");
     } else {
         client.get(username, function(err, reply) {
             // reply is null when the key is missing
@@ -106,7 +112,7 @@ app.post('/signin', function(req, res){
     var username = req.param('username', null);
     var pwd = req.param('pwd', null);
     console.log('signin ' + username);
-    if(!username || !pwd){
+    if(!username || !pwd || username == 'undefined' || pwd == 'undefined'){
         console.log('signin username||pwd null' + username +' || ' + pwd);
         res.status(400);
         res.send("error");
@@ -130,15 +136,17 @@ app.post('/signin', function(req, res){
 
 app.get('/users', function(req, res){
     var token = req.header('token', null);
-    client.get(token, function(err, reply){
-        if(reply){
-            res.status(200);
-            res.send(JSON.stringify(users)); 
-        } else {
-            res.status(401);
-            res.send('token invalid');
-        }
-    }); 
+    if(checkToken(token){
+      client.get(token, function(err, reply){
+          if(reply){
+              res.status(200);
+              res.send(JSON.stringify(users)); 
+          } else {
+              res.status(401);
+              res.send('token invalid');
+          }
+      });
+  }
 });
 
 
@@ -152,23 +160,24 @@ app.post('/messages', function(req, res){
     var token = req.header('token', null);
     console.log("message posted by token : " + token);
     console.log('post message '+JSON.stringify(req.body));
-    client.get(token, function(err, name){ 
-        var msg = req.body.message;
-        if(name){
-            var message = {
-                username : name,
-                date : new Date().getTime(),
-                message: msg
-            }
-            messages.push(message); 
-            res.status(200);
-            res.send();
-        } else {
-            res.status(401);
-            res.send('token invalid');
-        }
-    });  
-    
+    if(checkToken(token){
+      client.get(token, function(err, name){ 
+          var msg = req.body.message;
+          if(name){
+              var message = {
+                  username : name,
+                  date : new Date().getTime(),
+                  message: msg
+              }
+              messages.push(message); 
+              res.status(200);
+              res.send();
+          } else {
+              res.status(401);
+              res.send('token invalid');
+          }
+      }); 
+    }    
 });
 
 /**
@@ -176,15 +185,17 @@ app.post('/messages', function(req, res){
  */
 app.get('/messages', function(req, res){
     var token = req.header('token', null);
-    client.get(token, function(err, reply){
-        if(reply){
-            res.status(200);
-            res.send(JSON.stringify(messages)); 
-        } else {
-            res.status(401);
-            res.send('token invalid');
-        }
-    }); 
+    if(checkToken(token){
+      client.get(token, function(err, reply){
+          if(reply){
+              res.status(200);
+              res.send(JSON.stringify(messages)); 
+          } else {
+              res.status(401);
+              res.send('token invalid');
+          }
+      });
+    }
 });
 
 
@@ -197,49 +208,53 @@ app.post('/notes', function(req, res){
     var token = req.header('token', null);
     console.log("note posted by token : " + token);
     console.log('post note '+JSON.stringify(req.body));
-    client.get(token, function(err, name){ 
-        var msg = req.body.note;
-        if(name){
-            var note = {
-                id : name+"_"+new Date().getTime(),
-                username : name,
-                date : new Date().getTime(),
-                note: msg,
-                done: false
-            }
-            notes[note.id] = note; 
-            res.status(200);
-            res.send();
-        } else {
-            res.status(401);
-            res.send('token invalid');
-        }
-    });  
+    if(checkToken(token){
+      client.get(token, function(err, name){ 
+          var msg = req.body.note;
+          if(name){
+              var note = {
+                  id : name+"_"+new Date().getTime(),
+                  username : name,
+                  date : new Date().getTime(),
+                  note: msg,
+                  done: false
+              }
+              notes[note.id] = note; 
+              res.status(200);
+              res.send();
+          } else {
+              res.status(401);
+              res.send('token invalid');
+          }
+      });
+    }
     
 });
 
 app.post('/notes/:id', function(req, res){
     var token = req.header('token', null);
     var id = req.params.id;
-    client.get(token, function(err, name){ 
-        console.log('update note '+JSON.stringify(req.body));
-        var done = req.body.done;
-        if(name){
-            if(id in notes){
-                var n = notes[id];
-                n.done=done;                
-                notes[id] = n;
-                res.status(200);
-                res.send();
-            } else {
-                res.status(400);
-                return;
-            }            
-        } else {
-            res.status(401);
-            res.send('token invalid');
-        }
-    });      
+    if(checkToken(token){
+      client.get(token, function(err, name){ 
+          console.log('update note '+JSON.stringify(req.body));
+          var done = req.body.done;
+          if(name){
+              if(id in notes){
+                  var n = notes[id];
+                  n.done=done;                
+                  notes[id] = n;
+                  res.status(200);
+                  res.send();
+              } else {
+                  res.status(400);
+                  return;
+              }            
+          } else {
+              res.status(401);
+              res.send('token invalid');
+          }
+      });
+  }
 });
 
 
@@ -249,20 +264,22 @@ app.post('/notes/:id', function(req, res){
  */
 app.get('/notes', function(req, res){
     var token = req.header('token', null);
-    client.get(token, function(err, reply){
-        if(reply){
-            res.status(200);
-            var output = [];
+    if(checkToken(token){
+      client.get(token, function(err, reply){
+          if(reply){
+              res.status(200);
+              var output = [];
 
-            for (var type in notes) {
-                output.push(notes[type]);
-            }
-            res.send(JSON.stringify(output)); 
-        } else {
-            res.status(401);
-            res.send('token invalid');
-        }
-    }); 
+              for (var type in notes) {
+                  output.push(notes[type]);
+              }
+              res.send(JSON.stringify(output)); 
+          } else {
+              res.status(401);
+              res.send('token invalid');
+          }
+      }); 
+  }
 });
     
 

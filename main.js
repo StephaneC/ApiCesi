@@ -168,6 +168,7 @@ app.post('/messages', function(req, res){
           var msg = req.body.message;
           if(name){
               var message = {
+                  id : name+"_"+new Date().getTime(),
                   username : name,
                   date : new Date().getTime(),
                   message: msg

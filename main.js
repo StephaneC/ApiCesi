@@ -232,7 +232,7 @@ app.post('/notes', function(req, res){
               }
               notes[note.id] = note; 
               res.status(200);
-              res.send();
+              res.send(JSON.stringify(note));
           } else {
               res.status(401);
               res.send('token invalid');
@@ -258,7 +258,7 @@ app.post('/notes/:id', function(req, res){
                   n.done=done;                
                   notes[id] = n;
                   res.status(200);
-                  res.send();
+                  res.send(JSON.stringify(note));
               } else {
                   res.status(400);
                   return;

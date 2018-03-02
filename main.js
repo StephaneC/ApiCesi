@@ -258,7 +258,7 @@ app.post('/notes/:id', function(req, res){
                   n.done=done;                
                   notes[id] = n;
                   res.status(200);
-                  res.send(JSON.stringify(note));
+                  res.send(JSON.stringify(n));
               } else {
                   res.status(400);
                   return;

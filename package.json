@@ -10,10 +10,10 @@
     "express": "",
     "redis": ""
   },
-    "scripts" : {
-    "start" : "node main.js"
+  "scripts": {
+    "start": "node main.js"
   },
-  "engines" : {
-    "node" : ">=0.6"
+  "engines": {
+    "node": ">=0.6"
   }
 }

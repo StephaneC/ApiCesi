@@ -168,23 +168,16 @@ app.post('/messages', function (req, res) {
     console.log("message posted by token : " + token);
     console.log('post message ' + JSON.stringify(req.body));
     if (checkToken(token)) {
-        client.get(token, function (err, name) {
-            var msg = req.body.message;
-            if (name) {
-                var message = {
-                    id: name + "_" + new Date().getTime(),
-                    username: name,
-                    date: new Date().getTime(),
-                    message: msg
-                }
-                messages.push(message);
-                res.status(200);
-                res.send();
-            } else {
-                res.status(401);
-                res.send('token invalid');
-            }
-        });
+        var msg = req.body.message;
+        var message = {
+            id: tokens[token] + "_" + new Date().getTime(),
+            username: tokens[token],
+            date: new Date().getTime(),
+            message: msg
+        }
+        messages.push(message);
+        res.status(200);
+        res.send();
     } else {
         res.status(401);
         res.send('token invalid');
@@ -198,15 +191,8 @@ app.get('/messages', function (req, res) {
     var token = req.header('token', null);
     console.log("GET message by token : " + token);
     if (checkToken(token)) {
-        client.get(token, function (err, reply) {
-            if (reply) {
-                res.status(200);
-                res.send(JSON.stringify(messages));
-            } else {
-                res.status(401);
-                res.send('token invalid');
-            }
-        });
+        res.status(200);
+        res.send(JSON.stringify(messages));
     } else {
         res.status(401);
         res.send('token invalid');
@@ -224,24 +210,18 @@ app.post('/notes', function (req, res) {
     console.log("note posted by token : " + token);
     console.log('post note ' + JSON.stringify(req.body));
     if (checkToken(token)) {
-        client.get(token, function (err, name) {
-            var msg = req.body.note;
-            if (name) {
-                var note = {
-                    id: name + "_" + new Date().getTime(),
-                    username: name,
-                    date: new Date().getTime(),
-                    note: msg,
-                    done: false
-                }
-                notes[note.id] = note;
-                res.status(200);
-                res.send(JSON.stringify(note));
-            } else {
-                res.status(401);
-                res.send('token invalid');
-            }
-        });
+        var msg = req.body.note;
+        var name = tokens[token];
+        var note = {
+            id: name + "_" + new Date().getTime(),
+            username: tokens[token],
+            date: new Date().getTime(),
+            note: msg,
+            done: false
+        }
+        notes[note.id] = note;
+        res.status(200);
+        res.send(JSON.stringify(note));
     } else {
         res.status(401);
         res.send('token invalid');
@@ -253,25 +233,18 @@ app.post('/notes/:id', function (req, res) {
     var token = req.header('token', null);
     var id = req.params.id;
     if (checkToken(token)) {
-        client.get(token, function (err, name) {
-            console.log('update note ' + JSON.stringify(req.body));
-            var done = req.body.done;
-            if (name) {
-                if (id in notes) {
-                    var n = notes[id];
-                    n.done = done;
-                    notes[id] = n;
-                    res.status(200);
-                    res.send(JSON.stringify(n));
-                } else {
-                    res.status(400);
-                    return;
-                }
-            } else {
-                res.status(401);
-                res.send('token invalid');
-            }
-        });
+        console.log('update note ' + JSON.stringify(req.body));
+        var done = req.body.done;
+        if (id in notes) {
+            var n = notes[id];
+            n.done = done;
+            notes[id] = n;
+            res.status(200);
+            res.send(JSON.stringify(n));
+        } else {
+            res.status(400);
+            return;
+        }
     } else {
         res.status(401);
         res.send('token invalid');

@@ -13,7 +13,9 @@ Open your browser on [localhost:8080](http://localhost:8080)
 ## Terraform & GKE
 1. Construct the docker
 2. `gcloud docker -- push scastrec/chatapi`
-3. Create cluster > `cd terraform & terraform init & terraform apply`
+3. Create cluster and pod in k8s.tf > `cd terraform & terraform init & terraform apply`
+
+Deploy from kubectl a pod
 4. deploy a new pod with kubectl   
 ```
 gcloud container clusters get-credentials <YOUR_CLUSTER_NAME> --region europe-west3

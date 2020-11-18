@@ -24,5 +24,9 @@ kubectl expose deployment chatapi-by-kube --type=LoadBalancer --port 80 --target
 ```
 5. check pods with `kubectl get pods`. Check services with `kubectl get services -w`
 
-*Yeah It runs*
+*Yeah It runs - Go to the External IP shown in get services*
+
+
+
+
 

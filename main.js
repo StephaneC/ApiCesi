@@ -149,6 +149,13 @@ app.get('/users', function (req, res) {
     var token = req.header('token', null);
     if (checkToken(token)) {
         res.status(200);
+        const u = users.filter(user => {
+            return {
+                username: user.username,
+                urlPhoto: user.urlPhoto,
+                date: user.date
+            }
+        })
         res.send(JSON.stringify(users));
     } else {
         res.status(401);
